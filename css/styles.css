@@ -113,16 +113,37 @@ h1 {
   place-items: center;
 }
 
+.planet-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 20% 8%;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(242, 125, 252, 0) 0deg,
+      rgba(242, 125, 252, 0.36) 48deg,
+      rgba(111, 71, 205, 0.18) 124deg,
+      rgba(242, 125, 252, 0) 220deg,
+      rgba(242, 125, 252, 0.34) 320deg,
+      rgba(242, 125, 252, 0) 360deg
+    );
+  filter: blur(8px);
+  animation: orbitSpinWide 36s linear infinite;
+  pointer-events: none;
+}
+
 .halo {
   position: absolute;
-  inset: 12% 13% 18%;
+  inset: 15% 14% 20%;
   border-radius: 50%;
-  border: 14px solid rgba(255, 141, 255, 0.58);
+  border: 10px solid rgba(255, 141, 255, 0.42);
   box-shadow:
-    0 0 20px rgba(255, 145, 255, 0.85),
-    0 0 60px rgba(255, 120, 255, 0.45),
-    0 0 110px rgba(180, 92, 255, 0.3);
+    0 0 20px rgba(255, 145, 255, 0.65),
+    0 0 65px rgba(255, 120, 255, 0.36),
+    0 0 130px rgba(180, 92, 255, 0.24);
   clip-path: inset(0 0 18% 0 round 50%);
+  animation: orbitSpinNarrow 44s linear infinite;
 }
 
 .planet {
@@ -130,55 +151,77 @@ h1 {
   width: 170px;
   height: 170px;
   border-radius: 50%;
-  background: linear-gradient(160deg, #c88aff 0%, #8753e8 38%, #4b2a8d 70%, #25133f 100%);
+  background:
+    radial-gradient(circle at 36% 30%, rgba(112, 84, 181, 0.52), transparent 36%),
+    radial-gradient(circle at 54% 52%, #10081b 8%, #040207 62%, #000000 100%);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-    0 0 44px rgba(255, 111, 255, 0.25);
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 0 48px rgba(171, 94, 255, 0.32),
+    0 0 90px rgba(30, 8, 58, 0.65);
   overflow: hidden;
+  animation: coreSpin 52s linear infinite;
 }
 
 .planet::before {
   content: "";
   position: absolute;
-  inset: -16px;
+  inset: -20px;
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0) 26%);
-  mix-blend-mode: screen;
-  opacity: 0.75;
+  background:
+    conic-gradient(
+      from 40deg,
+      rgba(210, 132, 255, 0.36),
+      rgba(100, 62, 188, 0.14),
+      rgba(16, 8, 28, 0.05),
+      rgba(226, 112, 252, 0.26),
+      rgba(210, 132, 255, 0.36)
+    );
+  filter: blur(6px);
+  opacity: 0.78;
+  animation: coreSpin 34s linear infinite reverse;
 }
 
 .planet::after {
   content: "";
   position: absolute;
-  inset: 46px 18px -8px;
-  background: radial-gradient(circle at 50% 0, rgba(48, 18, 84, 0.52), rgba(10, 5, 24, 0.94));
-  clip-path: polygon(14% 0, 88% 0, 100% 20%, 90% 100%, 50% 92%, 0 100%, 10% 18%);
+  inset: 28% 28%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, rgba(78, 42, 124, 0.58), #000 72%);
+  box-shadow:
+    0 0 0 10px rgba(58, 22, 96, 0.35),
+    0 0 34px rgba(183, 98, 255, 0.2);
 }
 
 .planet__facet {
   position: absolute;
-  inset: 0;
-  clip-path: polygon(6% 34%, 21% 18%, 42% 18%, 35% 42%, 14% 54%);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  opacity: 0.85;
+  inset: 6% 8%;
+  clip-path: ellipse(45% 16% at 50% 50%);
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgba(205, 128, 255, 0), rgba(205, 128, 255, 0.56), rgba(205, 128, 255, 0));
+  filter: blur(2px);
+  opacity: 0.62;
+  animation: pulseGlow 7s ease-in-out infinite;
 }
 
 .planet__facet--two {
-  inset: 10% 16% 18% 34%;
-  clip-path: polygon(0 40%, 22% 12%, 54% 16%, 44% 52%, 20% 64%);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(141, 95, 255, 0.12));
+  inset: 18% 12%;
+  transform: rotate(42deg) scaleX(1.18);
+  opacity: 0.48;
+  animation-delay: -1.7s;
 }
 
 .planet__facet--three {
-  inset: 16% 8% 18% 50%;
-  clip-path: polygon(0 10%, 36% 0, 58% 18%, 42% 52%, 12% 40%);
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.22), rgba(92, 56, 189, 0.12));
+  inset: 24% 16%;
+  transform: rotate(-25deg) scaleX(1.3);
+  opacity: 0.42;
+  animation-delay: -3.2s;
 }
 
 .planet__facet--four {
-  inset: 42% 18% 8% 12%;
-  clip-path: polygon(12% 0, 72% 8%, 100% 58%, 48% 100%, 0 58%);
-  background: linear-gradient(165deg, rgba(86, 48, 159, 0.14), rgba(14, 7, 30, 0.4));
+  inset: 10% 14%;
+  transform: rotate(88deg) scaleX(1.22);
+  opacity: 0.38;
+  animation-delay: -4.8s;
 }
 
 .lede {
@@ -347,6 +390,49 @@ h1 {
 
   50% {
     transform: translate3d(0, 24px, 0) scale(1.06);
+  }
+}
+
+@keyframes orbitSpinWide {
+  from {
+    transform: rotate(-18deg) scaleX(1.14);
+  }
+
+  to {
+    transform: rotate(342deg) scaleX(1.14);
+  }
+}
+
+@keyframes orbitSpinNarrow {
+  from {
+    transform: rotate(-12deg) scaleX(1.08);
+  }
+
+  to {
+    transform: rotate(348deg) scaleX(1.08);
+  }
+}
+
+@keyframes coreSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.28;
+    filter: blur(2px);
+  }
+
+  50% {
+    opacity: 0.68;
+    filter: blur(3px);
   }
 }
 
